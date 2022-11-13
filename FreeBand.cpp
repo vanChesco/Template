@@ -2,39 +2,25 @@
 
 using namespace Domains;
 
-FreeBand::FreeBand() : amin{ 0 }, amax{ 0 } {};
-FreeBand::FreeBand(double min, double max) : amin(min), amax(max) {};
-
-//template<class T>
-/// <summary>
-/// Szablon funkcji
-/// </summary>
-/// <typeparam name="T"></typeparam>
-/// <param name="V"></param>
-/// <param name="p"></param>
-/// <returns></returns>
-std::vector<FreeBand> Domains::podziel(std::vector<FreeBand> V, std::vector<double> p)
+template<class T>
+std::vector<T> Domains::podziel(std::vector<T> V, std::vector<double> p)
 {
-
-	Domains::FreeBand pp({ 34, 48 });
+    Domains::FreeBand pp{34, 48};
 	std::vector<FreeBand> chunk;
 	/*std::vector<FreeBand>*/ chunk.assign(3, { 3,3 });
-	chunk.push_back(FreeBand(pp));
+    chunk.push_back(pp);
 
-	p.push_back(0);					
+    p.push_back(0);
 
-	int length{ 0 };
-	if (V.size() < p.size())	length = V.size(); 
-	else						length = p.size();
+    const size_t length{V.size() < p.size() ? V.size() : p.size()};
 
-	for (int i = 0; i < length; i++)
-	{
-		V[i].amax /= p[i];
-		V[i].amin /= p[i];
-	}
+    for (size_t i{}; i < length; ++i)
+    {
+        V[i] /= p[i];
+    }
 
-	return chunk;
-}	
+    return chunk;
+}
 
 void Domains::zrobTo()
 {
@@ -42,13 +28,18 @@ void Domains::zrobTo()
 	std::vector<double> dzielna;
 	std::vector<float> vf(23, 055);
 
-	int length = 20;
+    constexpr int length = 20;
 
-	for (size_t i = 0; i < length; i++)
+    for (int i{}; i < length; ++i)
 	{
 		vec.push_back({ double(i + 2), double(i + 8) });
 		dzielna.push_back((double)i);
 	}
 
-	podziel(vec, dzielna);
+    wynik = podziel(vec, dzielna);
+
+    for (auto x : wynik)
+    {
+        std::cout << x.amin << ", " << x.amax << std::endl;
+    }
 }

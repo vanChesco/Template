@@ -8,16 +8,21 @@ namespace Domains
 	class FreeBand
 	{
 	public:
-		double amin{ 0 }, amax{ 0 };
+        double amin{}, amax{};
 
-		FreeBand();
-		FreeBand(double min, double max);
+        FreeBand() = default;
+        FreeBand(double min, double max) : amin(min), amax(max) {}
 
+        FreeBand& operator/=(const double d)
+        {
+            amin /= d;
+            amax /= d;
+            return *this;
+        }
 	};
 
-	//template<class T>
-	std::vector<FreeBand> podziel(std::vector<FreeBand> V, std::vector<double> p);
+    template<class T>
+    std::vector<T> podziel(std::vector<T> V, std::vector<double> p);
 
 	void zrobTo();
-
 }
