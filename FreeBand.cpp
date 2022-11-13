@@ -26,10 +26,28 @@ std::vector<T> Domains::podziel(std::vector<T> V, std::vector<double> p)
 	if (V.size() < p.size())	length = V.size(); 
 	else						length = p.size();
 
-	for (size_t i = 0; i < length; i++)
+	for (int i = 0; i < length; i++)
 	{
-		V[i] /= p[i];
+		V[i].amax /= p[i];
+		V[i].amin /= p[i];
 	}
 
 	return chunk;
+}	
+
+void Domains::zrobTo()
+{
+	std::vector<FreeBand> vec, wynik;
+	std::vector<double> dzielna;
+	std::vector<float> vf(23, 055);
+
+	int length = 20;
+
+	for (size_t i = 0; i < length; i++)
+	{
+		vec.push_back({ double(i + 2), double(i + 8) });
+		dzielna.push_back((double)i);
+	}
+
+	podziel(vec, dzielna);
 }

@@ -18,4 +18,6 @@ namespace Domains
 	template<class T>
 	std::vector<T> podziel(std::vector<T> V, std::vector<double> p);
 
+	void zrobTo();
+
 }
