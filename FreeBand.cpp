@@ -5,7 +5,7 @@ using namespace Domains;
 FreeBand::FreeBand() : amin{ 0 }, amax{ 0 } {};
 FreeBand::FreeBand(double min, double max) : amin(min), amax(max) {};
 
-template<class T>
+//template<class T>
 /// <summary>
 /// Szablon funkcji
 /// </summary>
@@ -13,12 +13,13 @@ template<class T>
 /// <param name="V"></param>
 /// <param name="p"></param>
 /// <returns></returns>
-std::vector<T> Domains::podziel(std::vector<T> V, std::vector<double> p)
+std::vector<FreeBand> Domains::podziel(std::vector<FreeBand> V, std::vector<double> p)
 {
-	std::vector<T> chunk;
 
 	Domains::FreeBand pp({ 34, 48 });
-	chunk.push_back(pp);
+	std::vector<FreeBand> chunk;
+	/*std::vector<FreeBand>*/ chunk.assign(3, { 3,3 });
+	chunk.push_back(FreeBand(pp));
 
 	p.push_back(0);					
 
